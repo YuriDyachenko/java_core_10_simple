@@ -13,36 +13,36 @@ import java.util.*;
 
 public class Main {
 
-    private static final String[] WORDS = {"ангельская", "божественная", "безупречная",
-            "жизнерадостная", "бескорыстная", "божественная", "весёлая", "великолепная", "безупречная",
-            "завораживающая", "ангельская", "жизнерадостная", "восхитительная", "завораживающая",
-            "волнительная", "грациозная", "добрая", "безупречная", "душевная", "ангельская",
-            "божественная", "завораживающая", "дивная", "единственная", "желанная", "жизнерадостная",
-            "заботливая", "загадочная", "божественная", "жизнерадостная", "завораживающая",
-            "застенчивая", "зажигательная", "изысканная", "бесподобная", "завораживающая"};
+    private static final String[] WORDS = {"Мухин", "Пономарёв", "Сусаренко", "Спивак", "Авдеев", "Куликов",
+            "Сусаренко", "Авдеев", "Щербаков", "Никитин", "Бородай", "Князев", "Якушев", "Авдеев", "Сусаренко",
+            "Бородай", "Романов", "Гурьев", "Авдеев", "Копылов", "Виноградов", "Сусаренко", "Родионов",
+            "Хитрук", "Гурьев", "Авдеев", "Бородай", "Гурьев", "Евсеев", "Бородай", "Правый", "Беспалов"};
     private static final Random random = new Random();
 
     public static void main(String[] args) {
 
         //используем именно TreeMap, чтобы было отсортировано по алфавиту
-        Map<String, Integer> map = new TreeMap<>();
+        Map map = new TreeMap();
+        //заполняем уникальными значениями слов, сразу и суммируем
         for (String word: WORDS) {
-            Integer count = map.get(word);
+            Integer count = (Integer) map.get(word);
             map.put(word, 1 + (count == null ? 0 : count));
         }
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            System.out.printf("%s = %d\n", entry.getKey(), entry.getValue());
+        //просто вывод всех ключенй и значений
+        for (Object key: map.keySet()) {
+            System.out.println(key + " = " + map.get(key));
         }
 
         //телефонная книга
         PhoneBook phoneBook = new PhoneBook();
-        //добавление
+        //добавление случаных фамилий и телефонов
         for (int i = 0; i < 20; i++) {
             phoneBook.add(randomWord(), randomPhone());
         }
-        //поиск телефонов по фамилии
+        //поиск телефонов по случайным фамилиям
         for (int i = 0; i < 10; i++) {
-            phoneBook.get(randomWord());
+            String word = randomWord();
+            System.out.println(word + ": " + phoneBook.get(word));
         }
     }
 
