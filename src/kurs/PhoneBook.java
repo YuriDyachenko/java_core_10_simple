@@ -10,12 +10,7 @@ public class PhoneBook {
     private final Map map = new TreeMap();
 
     public void add(String name, String phone) {
-        Set phones;
-        if (map.containsKey(name)) {
-            phones = (Set) map.get(name);
-        } else {
-            phones = new TreeSet();
-        }
+        Set phones = (map.containsKey(name)) ? (Set) map.get(name) : new TreeSet();
         phones.add(phone);
         map.put(name, phones);
     }

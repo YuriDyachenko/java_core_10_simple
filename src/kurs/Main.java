@@ -25,8 +25,7 @@ public class Main {
         Map map = new TreeMap();
         //заполняем уникальными значениями слов, сразу и суммируем
         for (String word: WORDS) {
-            Integer count = (Integer) map.get(word);
-            map.put(word, 1 + (count == null ? 0 : count));
+            map.put(word, 1 + (map.containsKey(word) ? (int) map.get(word) : 0));
         }
         //просто вывод всех ключенй и значений
         for (Object key: map.keySet()) {
